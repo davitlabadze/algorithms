@@ -4,7 +4,7 @@
 //  write a function to search a given element x
 //  in arr[] and return the index of x in array.
 
-// Binary Search
+// recursive implementation of Binary Search
 function binarySearch($arr, $left, $right, $x)
 {
     if ($right >= $left) {
@@ -48,3 +48,40 @@ if ($result != -1) {
 } else {
     echo "Element is not present in array";
 }
+
+# Iterative implementation of Binary Search:
+function iterativeBinarySearch($arr, $left, $right, $x)
+{
+    while ($left <= $right) {
+        $m = $left + ($right - $left) / 2;
+
+        // Check if x is present at mid
+        if ($arr[$m] == $x)
+            return floor($m);
+
+        // If x greater, ignore
+        // left half
+        if ($arr[$m] < $x)
+            $left = $m + 1;
+
+        // If x is smaller,
+        // ignore right half
+        else
+            $right = $m - 1;
+    }
+
+    // if we reach here, then
+    // element was not present
+    return -1;
+}
+
+// Driver Code
+$arr2 = array(2, 3, 4, 10, 40);
+$searchElementX = 10;
+$n = count($arr);
+$secondRight = $n - 1;
+$result = iterativeBinarySearch($arr2, $left, $secondRight, $searchElementX);
+if (($result == -1))
+    echo "iterative Binary Search: Element is not present in array";
+else
+    echo "iterative Binary Search: Element is present at index ", $result;

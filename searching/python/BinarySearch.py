@@ -2,7 +2,7 @@
 # write a function to search a given element x
 # in arr[] and return the index of x in array.
 
-# Binary Search
+# Recursive implementation of Binary Search:
 def binarySearch(arr, left, right, x):
 
     # Check base case
@@ -40,3 +40,40 @@ if result != -1:
     print("Element is present at index % d" % result)
 else:
     print("Element is not present in array")
+
+
+# Iterative implementation of Binary Search:
+def iterativeBinarySearch(arr, left, right, searchElementX):
+
+    while left <= right:
+
+        mid = left + (right - left) // 2
+
+        # Check if searchElementX is present at mid
+        if arr[mid] == searchElementX:
+            return mid
+
+        # If searchElementX is greater, ignore left half
+        elif arr[mid] < searchElementX:
+            left = mid + 1
+
+        # If searchElementX is smaller, ignore right half
+        else:
+            right = mid - 1
+
+    # If we reach here, then the element
+    # was not present
+    return -1
+
+
+# Driver Code
+arr2 = [2, 3, 4, 10, 40]
+searchElementX = 10
+
+# Function call
+result = iterativeBinarySearch(arr2, 0, len(arr2)-1, searchElementX)
+
+if result != -1:
+    print("iterative Binary Search: Element is present at index % d" % result)
+else:
+    print("iterative Binary Search: Element is not present in array")
