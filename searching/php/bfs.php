@@ -67,3 +67,51 @@ echo "\n";
 //  So time complexity of printLevelOrder() is O(n) + O(n-1) + O(n-2) + .. + O(1) which is O(n^2). 
 // Auxiliary Space:  O(n) in the worst case. For a skewed tree, printGivenLevel() uses O(n) space for call stack. For a Balanced tree,
 //  the call stack uses O(log n) space, (i.e., the height of the balanced tree). 
+
+
+
+class SecondNode
+{
+    //  A utility function to create a new node
+    public function __construct($key)
+    {
+        $this->data = $key;
+        $this->left = null;
+        $this->right = null;
+    }
+}
+
+function printLevelOrderSecond($secondRoot)
+{
+    if ($secondRoot == null) return;
+
+    $queue = [];
+    array_push($queue, $secondRoot);
+
+    while (count($queue) > 0) {
+        // Print front of queue and
+        // remove it from queue
+        echo $queue[0]->data;
+        $node = array_shift($queue);
+
+        // Enqueue left child
+        if ($node->left != null) array_push($queue, $node->left);
+
+        // Enqueue right child
+        if ($node->right != null) array_push($queue, $node->right);
+    }
+}
+
+
+# Driver code
+$secondRoot              = new SecondNode(1);
+$secondRoot->left        = new SecondNode(2);
+$secondRoot->right       = new SecondNode(3);
+$secondRoot->left->left  = new SecondNode(4);
+$secondRoot->left->right = new SecondNode(5);
+
+echo "second Level Order Traversal of binary tree is: ";
+printLevelOrderSecond($secondRoot);
+
+# Time Complexity: O(n) where n is the number of nodes in the binary tree
+# Auxiliary Space: O(n) where n is the number of nodes in the binary tree

@@ -67,3 +67,69 @@ printLevelOrder(root)
 #  So time complexity of printLevelOrder() is O(n) + O(n-1) + O(n-2) + .. + O(1) which is O(n^2).
 # Auxiliary Space:  O(n) in the worst case. For a skewed tree, printGivenLevel() uses O(n) space for call stack. For a Balanced tree,
 #  the call stack uses O(log n) space, (i.e., the height of the balanced tree).
+
+
+# Algorithm:
+# For each node, first, the node is visited and then it’s child nodes are put in a FIFO queue.
+
+# printLevelorder(tree)
+# 1) Create an empty queue q
+# 2) temp_node = root /*start from root*/
+# 3) Loop while temp_node is not NULL
+#     a) print temp_node->data.
+#     b) Enqueue temp_node’s children
+#       (first left then right children) to q
+#     c) Dequeue a node from q.
+# order traversal using Queue
+# A node structure
+class SecondNode:
+    # A utility function to create a new node
+    def __init__(self, key):
+        self.data = key
+        self.left = None
+        self.right = None
+
+# Iterative Method to print the
+# height of a binary tree
+
+
+def printLevelOrder(secondRoot):
+    # Base Case
+    if secondRoot is None:
+        return
+
+    # Create an empty queue
+    # for level order traversal
+    queue = []
+
+    # Enqueue secondRoot and initialize height
+    queue.append(secondRoot)
+
+    while(len(queue) > 0):
+
+        # Print front of queue and
+        # remove it from queue
+        print(queue[0].data)
+        node = queue.pop(0)
+
+        # Enqueue left child
+        if node.left is not None:
+            queue.append(node.left)
+
+        # Enqueue right child
+        if node.right is not None:
+            queue.append(node.right)
+
+
+# Driver code
+secondRoot = SecondNode(1)
+secondRoot.left = SecondNode(2)
+secondRoot.right = SecondNode(3)
+secondRoot.left.left = SecondNode(4)
+secondRoot.left.right = SecondNode(5)
+
+print("Level Order Traversal of binary tree is:")
+printLevelOrder(secondRoot)
+
+# Time Complexity: O(n) where n is the number of nodes in the binary tree
+# Auxiliary Space: O(n) where n is the number of nodes in the binary tree

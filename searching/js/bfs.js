@@ -64,3 +64,53 @@ printLevelOrder();
 //  So time complexity of printLevelOrder() is O(n) + O(n-1) + O(n-2) + .. + O(1) which is O(n^2). 
 // Auxiliary Space:  O(n) in the worst case. For a skewed tree, printGivenLevel() uses O(n) space for call stack. For a Balanced tree,
 //  the call stack uses O(log n) space, (i.e., the height of the balanced tree). 
+
+
+class SecondNode{
+    constructor(key){
+        this.data = key;
+        this.left = null;
+        this.right = null;
+    }
+}
+
+function printLevelOrderSecond(){
+    // Create an empty queue
+    // for level order traversal
+    var queue = []
+
+    // Enqueue secondRoot and initialize height
+    queue.push(root)
+
+    while (queue.length != 0) {
+        // removes the first element from an array and returns that removed element.
+        // This method changes the length of the array
+        var tempNode = queue.shift();
+        console.log(tempNode.data + " ");
+
+        // Enqueue left child 
+        if (tempNode.left != null) {
+            queue.push(tempNode.left);
+        }
+
+        // Enqueue right child 
+        if (tempNode.right != null) {
+            queue.push(tempNode.right);
+        }
+    }
+}
+
+
+// Driver code 
+
+var root = new Node(1);
+root.left = new Node(2);
+root.right = new Node(3);
+root.left.left = new Node(4);
+root.left.right = new Node(5);
+console.log("Level order traversal of binary tree is: ");
+printLevelOrderSecond();
+
+
+//  Time Complexity: O(n) where n is the number of nodes in the binary tree
+//  Auxiliary Space: O(n) where n is the number of nodes in the binary tree
